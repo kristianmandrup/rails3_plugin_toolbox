@@ -1,8 +1,34 @@
-= rails3_plugin_toolbox
+# Rails3 plugin toolbox
 
-Description goes here.
+A toolbox to facilitate creating Plugins for Rails 3 without having to necessarily know a lot about the Rails 3 internals and Plugin architecture. 
 
-== Note on Patches/Pull Requests
+## Inspiration
+
+This project was inspired by the Yehuda Katz article at http://www.railsdispatch.com/, titled "How Rails enables more choices".
+
+## Install
+
+<code>gem install rails3_plugin_toolbox</code>
+
+## Usage
+
+module MyPlugin
+  include Rails::Plugin::Toolbox::Extender
+
+  # do some actions after Application has been initialized using registered initializers
+  after(:initialize) do
+    include MyViewModule
+  end
+
+  # extend action_view with methods from some modules
+  extend_rails(:view) do
+    with UltraFix
+    with PowerTools    
+  end  
+end  
+
+
+## Note on Patches/Pull Requests
  
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -12,6 +38,6 @@ Description goes here.
   (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+## Copyright
 
 Copyright (c) 2010 Kristian Mandrup. See LICENSE for details.
