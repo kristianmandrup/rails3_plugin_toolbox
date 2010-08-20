@@ -27,6 +27,11 @@ module MyPlugin
     with UltraFix
     with PowerTools    
   end  
+
+  extend_rails(:controller) do
+    extend_from_module Ultra::Power, :util, :logging, :monitor
+    extend_from_module Ultra::Power::More, :extra, :stuff
+  end  
 end  
 </pre>
 
