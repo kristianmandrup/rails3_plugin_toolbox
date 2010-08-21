@@ -1,6 +1,10 @@
 # Rails3 plugin toolbox
 
-A toolbox to facilitate creating Plugins for Rails 3 without having to necessarily know a lot about the Rails 3 internals and Plugin architecture. 
+A toolbox to facilitate creating Plugins for Rails 3 without having to necessarily know a lot about the Rails 3 internals and Plugin architecture.   
+
+## Status
+
+This gem needs to be tested. I 'hope' it works as is... I will soon make sure of it and add an RSpec 2 test suite ;)
 
 ## Inspiration
 
