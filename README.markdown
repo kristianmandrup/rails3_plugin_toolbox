@@ -2,9 +2,12 @@
 
 A toolbox to facilitate creating Plugins for Rails 3 without having to necessarily know a lot about the Rails 3 internals and Plugin architecture.   
 
-## Status
+## RSpec test suite
 
-This gem needs to be tested. I 'hope' it works as is... I will soon make sure of it and add an RSpec 2 test suite ;)
+I have now discovered how to test he validity of Rails extensions in RSpec without having to have a full Rails 3 host app.
+RSpec 2 test suite will soon be added :)
+
+http://gist.github.com/542441
 
 ## Inspiration
 
