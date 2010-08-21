@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-08-20}
+  s.date = %q{2010-08-21}
   s.description = %q{Toolbox to facilitate Rails 3 plugin development}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
      "lib/plugin_toolbox/validator/hook_validator.rb",
      "lib/plugin_toolbox/validator/type_validator.rb",
      "lib/rails3_plugin_toolbox.rb",
+     "rails3_plugin_toolbox.gemspec",
      "spec/plugin_toolbox/extender_spec.rb",
      "spec/plugin_toolbox/loader_spec.rb",
      "spec/plugin_toolbox/util_spec.rb",
