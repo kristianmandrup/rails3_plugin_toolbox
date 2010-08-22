@@ -5,13 +5,8 @@ module Rails3
       ACTIVE_MODULES = {:AR => :active_record, :view => :action_view, :controller => :action_controller, :mailer => :action_mailer}    
 
       def get_base_class type
-        begin
-          type = get_load_type(type).to_s
-          const = act_type?(type) ? rails_const_base(type) : "#{type.to_s.camelize}"          
-          const.constantize        
-        rescue                            
-          raise ArgumentError, "Can't find rails constant: #{const}"
-        end
+        type = get_load_type(type).to_s
+        const = act_type?(type) ? rails_const_base(type) : "#{type.to_s.camelize}"                            
       end
 
       def act_type? type

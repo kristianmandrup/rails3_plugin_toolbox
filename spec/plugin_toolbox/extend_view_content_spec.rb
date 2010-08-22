@@ -35,16 +35,19 @@ describe Rails3::PluginExtender do
         extend_rails :view do          
           extend_from_module Helper::View, :panel, :window
           extend_with Helper::View::Button, Helper::View::Form
-        end
+          
+          after :initialize do
+            :view.should be_extended_with Helper::View, :panel, :window, :button, :form
+            :view.should_not be_extended_with Helper::View, :unknown
+
+            lambda {:view.should be_extended_with Helper::View, :unknown}.should raise_error
+          end          
+        end        
       end
     
       # Initialize the rails application
       Minimal::Application.initialize!    
     
-      :view.should be_extended_with Helper::View, :panel, :window, :button, :form
-      :view.should_not be_extended_with Helper::View, :unknown
-
-      lambda {:view.should be_extended_with Helper::View, :unknown}.should raise_error
       # :view.should be_extended_with Helper::View, :unknown
     end
   end
