@@ -3,7 +3,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "rails3_plugin_toolbox"
     gem.summary = %Q{Toolbox to facilitate Rails 3 plugin development}
-    gem.description = %Q{Toolbox to facilitate Rails 3 plugin development}
+    gem.description = %Q{Provides a more intuitive DSL for Rails 3 plugin configuration and a specialized RSpec 2 matcher. Makes it much easier to develop Rails 3 plugins!}
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/rails3_plugin_toolbox"
     gem.authors = ["Kristian Mandrup"]
