@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails3_plugin_toolbox}
-  s.version = "0.2.0"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -27,10 +27,13 @@ Gem::Specification.new do |s|
      "config/database.yml",
      "lib/plugin_toolbox/extender.rb",
      "lib/plugin_toolbox/loader.rb",
+     "lib/plugin_toolbox/rspec/config.rb",
+     "lib/plugin_toolbox/rspec/matchers/be_extended_with.rb",
      "lib/plugin_toolbox/util.rb",
      "lib/rails3_plugin_toolbox.rb",
      "log/development.log",
      "rails3_plugin_toolbox.gemspec",
+     "spec/plugin_toolbox/extend_view_content_spec.rb",
      "spec/plugin_toolbox/extender_action_spec.rb",
      "spec/plugin_toolbox/extender_i18n_spec.rb",
      "spec/plugin_toolbox/extender_spec.rb",
@@ -45,7 +48,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Toolbox to facilitate Rails 3 plugin development}
   s.test_files = [
-    "spec/plugin_toolbox/extender_action_spec.rb",
+    "spec/plugin_toolbox/extend_view_content_spec.rb",
+     "spec/plugin_toolbox/extender_action_spec.rb",
      "spec/plugin_toolbox/extender_i18n_spec.rb",
      "spec/plugin_toolbox/extender_spec.rb",
      "spec/spec_helper.rb"
