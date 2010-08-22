@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails3_plugin_toolbox}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-08-21}
+  s.date = %q{2010-08-22}
   s.description = %q{Toolbox to facilitate Rails 3 plugin development}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -24,17 +24,20 @@ Gem::Specification.new do |s|
      "README.markdown",
      "Rakefile",
      "VERSION",
+     "config/database.yml",
      "lib/plugin_toolbox/extender.rb",
      "lib/plugin_toolbox/loader.rb",
      "lib/plugin_toolbox/util.rb",
-     "lib/plugin_toolbox/validator/hook_validator.rb",
-     "lib/plugin_toolbox/validator/type_validator.rb",
      "lib/rails3_plugin_toolbox.rb",
+     "log/development.log",
      "rails3_plugin_toolbox.gemspec",
+     "spec/plugin_toolbox/extender_action_spec.rb",
+     "spec/plugin_toolbox/extender_i18n_spec.rb",
      "spec/plugin_toolbox/extender_spec.rb",
-     "spec/plugin_toolbox/loader_spec.rb",
-     "spec/plugin_toolbox/util_spec.rb",
-     "spec/spec_helper.rb"
+     "spec/spec_helper.rb",
+     "wiki/add_rake_tasks.markdown",
+     "wiki/engine.markdown",
+     "wiki/how_to_guide.markdown"
   ]
   s.homepage = %q{http://github.com/kristianmandrup/rails3_plugin_toolbox}
   s.rdoc_options = ["--charset=UTF-8"]
@@ -42,9 +45,9 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{Toolbox to facilitate Rails 3 plugin development}
   s.test_files = [
-    "spec/plugin_toolbox/extender_spec.rb",
-     "spec/plugin_toolbox/loader_spec.rb",
-     "spec/plugin_toolbox/util_spec.rb",
+    "spec/plugin_toolbox/extender_action_spec.rb",
+     "spec/plugin_toolbox/extender_i18n_spec.rb",
+     "spec/plugin_toolbox/extender_spec.rb",
      "spec/spec_helper.rb"
   ]
 
