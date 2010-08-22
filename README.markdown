@@ -22,47 +22,58 @@ This project was inspired by the Yehuda Katz article at http://www.railsdispatch
 <pre>
 # my_plugin/lib/load.rb
 module MyPlugin
-  include Rails::Plugin::Toolbox::Extender
+  Rails3::PluginExtender.new do
+  
+    extend_from_module Ultra::View, :stuff, :in => :view 
+    extend_with Ultra::Controller, :in => :controller
+  
+    extend_rails :i18n do
+      with MyAddition
+      extend_from_module Ultra::Power, :util, :logging, :monitor
 
-  # do some actions after Application has been initialized using registered initializers
-  after(:initialize) do
-    include MyViewModule
-  end
+      before :initialize do
+        MyOtherAddition.say 'before localized!'
+      end      
 
-  # extend action_view with methods from some modules
-  extend_rails(:view) do
-    with UltraFix
-    with PowerTools    
-  end  
+      before :configuration do
+        MyOtherAddition.configured = 'was configured!'      
+      end
 
-  extend_rails(:controller) do
-    extend_from_module Ultra::Power, :util, :logging, :monitor
-    extend_from_module Ultra::Power::More, :extra, :stuff
-  end  
-end  
-</pre>
+      before :eager_load do
+        puts "before eager load!"
+      end
 
-The following are some general tips for adding custom rake tasks and generators to your Rails 3 plugin.
-
-## Custom rake tasks
-
-<pre>
-# my_plugin/lib/railtie.rb
-module MyPlugin
-  class Railtie < ::Rails::Railtie
-    rake_tasks do
-      load "my_plugin/railties/tasks.rake"    
+      after :initialize do
+        MyAddition.say 'localized!'
+      end      
     end
-  end    
-end
-</pre>
 
-<pre>
-# my_plugin/lib/railties/tasks.rake
-desc "Talk about being in my_gem"
-task :my_gem do
-  puts "You're in my_gem"
-end     
+    extend_rails :view do
+      with MyViewAddition
+    end
+
+    extend_rails :controller do
+      with MyViewAddition
+    end
+
+    extend_rails :mailer do
+      with MyMailAddition, 'MyOtherMailAddition'
+    end
+
+    extend_rails :AR do
+      with MyActiveRecordAddition
+    end
+
+    extend_rails(:controller) do
+      extend_from_module Ultra::Power, :util, :logging, :monitor
+      extend_from_module Ultra::Power::More, :extra, :stuff
+    end  
+    
+    after(:initialize) do
+      include MyCoreModule
+    end    
+  end
+end  
 </pre>
 
 

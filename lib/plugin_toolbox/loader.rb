@@ -1,31 +1,32 @@
-require_all File.dirname(__FILE__) + '/validator'
+module Rails3
+  class PluginExtender
+    module LoadHandler
+      include Rails3::PluginExtender::Util
 
-module Rails::PluginToolbox
-  class Loader
-    include Rails::PluginToolbox::HookValidator
-        
-    def load_before type, &block
-      raise ArgumentError "#{type} is not a valid before hook" if !valid_before_hook?
-      ActiveSupport.on_load(:"before_#{type}") do |loader|
-        do_loader loader, &block
+      def before type, &block
+        type = type.to_sym
+        raise ArgumentError, "#{type} is not a valid before hook" if !valid_before_hook? type
+        load_handling :"before_#{type}", &block
+      end
+
+      def after type, &block
+        type = type.to_sym
+        raise ArgumentError, "#{type} is not a valid after hook" if !valid_after_hook? type
+        load_handling :"after_#{type}", &block
+      end
+
+      def on_load type, &block    
+        type = get_load_type type
+        raise ArgumentError, "#{type} is not a valid load hook" if !valid_load_hook? type
+        load_handling type, &block
+      end
+      
+      def load_handling type, &block
+        ActiveSupport.on_load type do
+          extend Rails3::PluginExtender::DSL
+          instance_eval(&block)        
+        end
       end
     end
-
-    def load_after type, &block
-      type = valid_after_hook? ? type : :"action_#{type}"
-      raise ArgumentError "#{type} is not a valid after hook" if !valid_after_hook? type          
-      ActiveSupport.on_load(type) do |loader|
-        do_loader loader, &block
-      end
-    end
-
-    protected
-
-    def do_loader loader, &block
-      loader.extend(Loader)
-      if block
-        block.arity < 1 ? loader.instance_eval(&block) : block.call(loader)  
-      end
-    end           
   end
 end

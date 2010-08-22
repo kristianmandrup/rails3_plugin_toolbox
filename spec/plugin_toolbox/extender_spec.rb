@@ -1,26 +1,39 @@
-require "spec_helper"
+require 'spec_helper'
 
-module MyControllerAddition
-  def hello
-    puts "Hello from MyControllerAddition"
+describe Rails3::PluginExtender do
+  describe '#extend_rails' do
+    it "should NOT extend Unknown" do
+      lambda do
+        Rails3::PluginExtender.new
+          extend_rails :unknown do
+            with MyAddition
+          end
+        end     
+      end.should raise_error
+    
+      # Initialize the rails application
+      Minimal::Application.initialize!    
+        
+      MyAddition.heard.should == null
+    end
+    
+    it "should extend Active Record" do
+      Rails3::PluginExtender.new do
+        extend_rails :AR do
+          with MyAddition
+      
+          after :initialize do
+            MyAddition.say 'record me!'
+          end      
+        end
+      end
+    
+      # Initialize the rails application
+      Minimal::Application.initialize!    
+    
+      ActiveRecord::Base.instance_methods.grep(/zzz/).should_not be_empty
+    
+      MyAddition.heard.should == 'record me!'
+    end     
   end
 end
-
-describe Rails::PluginToolbox do
-  before(:each) do
-    @controller_class = Class.new
-    @controller = @controller_class.new
-    stub(@controller).params { {} }
-    mock(@controller_class).helper_method(:can?, :cannot?)    
-    @extender = Rails::PluginToolbox::Extender.new
-  end
-  
-  describe '#extend_rails' do
-    @extender.extend_rails :controller do
-      with MyModule
-    end
-
-    ActionController
-    
-  end
-end 
