@@ -43,6 +43,9 @@ describe Rails3::PluginExtender do
     
       :view.should be_extended_with Helper::View, :panel, :window, :button, :form
       :view.should_not be_extended_with Helper::View, :unknown
+
+      lambda {:view.should be_extended_with Helper::View, :unknown}.should raise_error
+      # :view.should be_extended_with Helper::View, :unknown
     end
   end
 end

@@ -4,7 +4,7 @@ module Rails3
       class BeExtendedWith
         include Rails3::PluginExtender::Util          
       
-        attr_reader :methods, :module_const, :rails_const, :submodules
+        attr_reader :methods, :module_const, :rails_const, :submodules, :bad_const, :cause
       
         def initialize(module_const, submodules=nil)
           @module_const = module_const     
@@ -14,10 +14,12 @@ module Rails3
 
         def matches? type
           begin
-            @rails_const = get_base_class(type)                  
+            @rails_const = get_base_class(type)
             return match_submodules? if submodules
+            @bad_const = module_const
             methods_included? module_const.instance_methods 
           rescue
+            @cause = ", but the extension module wasn't found"
             false
           end
         end
@@ -28,7 +30,10 @@ module Rails3
 
         def match_submodules?
           submodules.each do |name|
-            return false if !methods_included? get_methods(name)            
+            @bad_const = make_constant(module_const, name)
+            if !methods_included? get_methods(name)                          
+              return false               
+            end
           end
           true
         end
@@ -42,11 +47,11 @@ module Rails3
         end
   
         def failure_message   
-          "Expected the rails class #{rails_const} to be extended with all the methods in #{module_const}"
+          "Expected the rails class #{rails_const} to be extended with the methods in #{bad_const}#{cause}"
         end 
   
         def negative_failure_message  
-          "Din not expect the rails class #{rails_const} to be extended with all the methods in #{module_const}"
+          "Did not expect the rails class #{rails_const} to be extended with the methods in #{module_const}"
         end                   
       end
     

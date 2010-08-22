@@ -4,6 +4,7 @@ describe Rails3::PluginExtender do
   describe '#extend_rails' do
     it "should extend Action View" do
       extender = Rails3::PluginExtender.new
+      
       extender.extend_rails :view do
         with MyAddition
       
