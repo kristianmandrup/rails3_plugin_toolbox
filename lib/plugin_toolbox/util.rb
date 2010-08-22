@@ -3,7 +3,17 @@ module Rails3
     module Util    
       INIT = :initialize    
       ACTIVE_MODULES = {:AR => :active_record, :view => :action_view, :controller => :action_controller, :mailer => :action_mailer}    
-    
+
+      def get_base_class type
+        type = get_load_type(type).to_s
+        return "#{type.to_s.camelize}::Base".constantize if type =~/action/ || type =~/active/
+        "#{type.to_s.camelize}".constantize        
+      end
+
+      def get_constant base_name, name   
+        "#{base_name.to_s.camelize}::#{name.to_s.camelize}".constantize
+      end
+
       def get_load_type type
          return ACTIVE_MODULES[type] if ACTIVE_MODULES[type]
          return type if ACTIVE_MODULES.values.include? type                

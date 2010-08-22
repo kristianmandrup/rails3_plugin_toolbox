@@ -1,17 +1,10 @@
 # Rails3 plugin toolbox
 
-A toolbox to facilitate creating Plugins for Rails 3 without having to necessarily know a lot about the Rails 3 internals and Plugin architecture.   
+This is a small toolbox that greatly facilitates creating Plugins for Rails 3 without having to know a lot about the Rails 3 internals and Plugin architecture.
+The toolbox provides a convenient DSL that abstracts away the internal Rails 3 plugin wiring to an even greater extent, making the DSL dead simple to use!
 
-## RSpec test suite
-
-I have now discovered how to test he validity of Rails extensions in RSpec without having to have a full Rails 3 host app.
-RSpec 2 test suite will soon be added :)
-
-http://gist.github.com/542441
-
-## Inspiration
-
-This project was inspired by the Yehuda Katz article at http://www.railsdispatch.com/, titled "How Rails enables more choices".
+I also provide a specialized RSpec 2 matcher *be_extended_with* which makes it easy to spec your plugin extension functionality, to make sure Rails is extended with
+the functionality (modules) that you expect and desire ;)
 
 ## Install
 
@@ -20,62 +13,106 @@ This project was inspired by the Yehuda Katz article at http://www.railsdispatch
 ## Usage
 
 <pre>
-# my_plugin/lib/load.rb
-module MyPlugin
-  Rails3::PluginExtender.new do
-  
-    extend_from_module Ultra::View, :stuff, :in => :view 
-    extend_with Ultra::Controller, :in => :controller
-  
-    extend_rails :i18n do
-      with MyAddition
-      extend_from_module Ultra::Power, :util, :logging, :monitor
+# my_plugin/lib/my_plugin/rails/extensions.rb      
 
-      before :initialize do
-        MyOtherAddition.say 'before localized!'
-      end      
+require 'rails/all'
+require 'rails3_plugin_toolbox'
 
-      before :configuration do
-        MyOtherAddition.configured = 'was configured!'      
-      end
+Rails3::PluginExtender.new do
+  extend_from_module Ultra::View, :stuff, :in => :view 
+  extend_with Ultra::Controller, :in => :controller
 
-      before :eager_load do
-        puts "before eager load!"
-      end
+  before :initialize do
+    "Rails not yet initialized!"
+  end      
 
-      after :initialize do
-        MyAddition.say 'localized!'
-      end      
+  extend_rails :i18n do
+    with MyAddition
+    extend_from_module Ultra::Power, :util, :logging, :monitor
+
+    before :initialize do
+      MyOtherAddition.say 'before localized!'
+    end      
+
+    before :configuration do
+      MyOtherAddition.configured = 'was configured!'      
     end
 
-    extend_rails :view do
-      with MyViewAddition
+    before :eager_load do
+      puts "before eager load!"
     end
 
-    extend_rails :controller do
-      with MyViewAddition
-    end
-
-    extend_rails :mailer do
-      with MyMailAddition, 'MyOtherMailAddition'
-    end
-
-    extend_rails :AR do
-      with MyActiveRecordAddition
-    end
-
-    extend_rails(:controller) do
-      extend_from_module Ultra::Power, :util, :logging, :monitor
-      extend_from_module Ultra::Power::More, :extra, :stuff
-    end  
-    
-    after(:initialize) do
-      include MyCoreModule
-    end    
+    after :initialize do
+      MyAddition.say 'localized!'
+    end      
   end
-end  
+end
 </pre>
 
+More API examples
+
+<pre>                        
+Rails3::PluginExtender.new do  
+  extend_rails :view do # or use :action_view
+    with MyViewAddition
+  end
+
+  extend_rails :controller do # or use :action_mailer
+    with MyViewAddition
+  end
+
+  extend_rails :mailer do # or use :action_mailer
+    with MyMailAddition, 'MyOtherMailAddition'
+  end
+
+  extend_rails :AR do # active record
+    with MyActiveRecordAddition
+  end
+
+  extend_rails :active_record do
+    with MyExtraScopeHelpers
+  end
+
+  extend_rails(:controller) do
+    extend_from_module Ultra::Power, :util, :logging, :monitor
+    extend_from_module Ultra::Power::More, :extra, :stuff
+  end  
+  
+  after(:initialize) do
+    puts "Rails initialized!"
+  end    
+end
+</pre>
+
+## RSpec 2 matchers
+
+The library comes with a special Matcher to facilitate making Rails 3 extension specs
+
+* be_extended_with module_name, *submodules
+
+_Usage example:_
+
+<pre>   
+                   
+require 'rspec'
+require 'rails3_plugin_toolbox'
+require 'rails/all'  
+  
+  it "should extend Action View with View Helpers" do
+    Rails3::PluginExtender.new do
+      extend_rails :view do          
+        extend_from_module Helper::View, :panel, :window
+        extend_with Helper::View::Button, Helper::View::Form
+      end
+    end
+  
+    # Initialize the rails application
+    Minimal::Application.initialize!    
+  
+    :view.should be_extended_with Helper::View, :panel, :window, :button, :form
+    :view.should_not be_extended_with Helper::View, :unknown
+  end  
+</pre>
 
 ## Note on Patches/Pull Requests
  

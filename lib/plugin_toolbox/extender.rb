@@ -20,7 +20,7 @@ module Rails3
     def extend_from_module base_name, *module_names, options
       raise ArgumentError, "You must specify an options Hash as the last argument for #extend_from_module" if !options.kind_of? Hash      
       module_names.each do |name|
-        extend_with "#{base_name.camelize}::#{name.to_s.camelize}".constantize, options
+        extend_with get_constant(base_name, name), options
       end
     end
 
@@ -38,7 +38,7 @@ module Rails3
       
       def extend_from_module base_name, *module_names
         module_names.each do |name|
-          include "#{base_name.camelize}::#{name.to_s.camelize}".constantize
+          include get_constant(base_name, name)
         end
       end
 
