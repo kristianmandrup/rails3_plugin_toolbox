@@ -97,7 +97,8 @@ _Usage example:_
 require 'rspec'
 require 'rails3_plugin_toolbox'
 require 'rails/all'  
-  
+
+describe "My Plugin rails extensions" do
   it "should extend Action View with View Helpers" do
     Rails3::PluginExtender.new do
       extend_rails :view do          
@@ -105,13 +106,37 @@ require 'rails/all'
         extend_with Helper::View::Button, Helper::View::Form
       end
     end
-  
-    # Initialize the rails application
+
+    # pull in a macro that makes 'after_init' available!
+    extend Rails3::PluginExtender::Macro      
+
+    after_init :view do |view|
+      view.should be_extended_with Helper::View, :panel, :window, :button, :form
+      view.should_not be_extended_with Helper::View, :unknown
+    end
+    
     Minimal::Application.initialize!    
-  
-    :view.should be_extended_with Helper::View, :panel, :window, :button, :form
-    :view.should_not be_extended_with Helper::View, :unknown
   end  
+end
+
+# alternative RSpec configuration using macros
+
+describe "My other Plugin rails extensions" do
+  before :each do
+    Rails3::PluginExtender.new do
+      extend_rails :view do          
+        extend_from_module Helper::View, :grid, :tree      
+      end        
+    end
+  end
+
+  after_init :view do |view|
+    view.should be_extended_with Helper::View, :panel, :window, :button, :form
+  end
+
+  it "should extend Action View" do      
+    Minimal::Application.initialize!  
+  end
 </pre>
 
 ## Note on Patches/Pull Requests
