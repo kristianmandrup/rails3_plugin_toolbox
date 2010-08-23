@@ -45,9 +45,7 @@ describe Rails3::PluginExtender do
     # end
 
     
-    it "should extend Action View" do      
-      extend Rails3::PluginExtender::Macro      
-
+    it "should extend Action View" do
       after_init :view do
         puts "View initialized!"
         

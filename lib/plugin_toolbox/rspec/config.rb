@@ -5,5 +5,8 @@ RSpec.configure do |config|
   config.extend Rails3::PluginExtender::Macro
 end
 
-
-
+module RSpec::Core
+  class ExampleGroup
+    include Rails3::PluginExtender::Macro
+  end
+end
