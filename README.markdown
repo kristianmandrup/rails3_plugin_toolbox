@@ -114,8 +114,15 @@ describe "My Plugin rails extensions" do
       :view.should be_extended_with Helper::View, :panel, :window, :button, :form
       :view.should_not be_extended_with Helper::View, :unknown
     end
-    
-    Minimal::Application.initialize!    
+
+    after_init :controller do
+      :controller.should be_extended_with Helper::Controller, :stuff
+      :controller.should_not be_extended_with My::Paginator
+    end
+
+    # first arg is the App name, the remaining symbols are 
+    # the identifiers for which railties to initialize
+    init_app_railties :minimal, :view, :controller
   end  
 end
 
@@ -135,7 +142,7 @@ describe "My other Plugin rails extensions" do
   end
 
   it "should extend Action View" do      
-    Minimal::Application.initialize!  
+    init_app_railties :minimal, :view
   end
 </pre>
 
