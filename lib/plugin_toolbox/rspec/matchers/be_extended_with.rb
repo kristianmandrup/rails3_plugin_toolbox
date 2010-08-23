@@ -2,7 +2,7 @@ module Rails3
   class PluginExtender
     module Matchers
       class BeExtendedWith
-        include Rails3::PluginExtender::Util          
+        include Rails3::PluginExtender::Util
       
         attr_reader :methods, :module_const, :rails_const, :submodules, :bad_const, :cause, :rails_const_name
       

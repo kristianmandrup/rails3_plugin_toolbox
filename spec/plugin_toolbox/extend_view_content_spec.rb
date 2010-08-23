@@ -28,27 +28,35 @@ module Helper
   end
 end
 
+
 describe Rails3::PluginExtender do
-  describe '#extend_rails' do
-    it "should extend Action View" do
+  describe '#extend_rails' do        
+
+    before :each do
       Rails3::PluginExtender.new do
         extend_rails :view do          
           extend_from_module Helper::View, :panel, :window
           extend_with Helper::View::Button, Helper::View::Form
           
-          after :initialize do
-            :view.should be_extended_with Helper::View, :panel, :window, :button, :form
-            :view.should_not be_extended_with Helper::View, :unknown
-
-            lambda {:view.should be_extended_with Helper::View, :unknown}.should raise_error
-          end          
         end        
       end
+    end
+
+    # after_init :view do |view|
+    #   view.should be_extended_with Helper::View, :panel, :window, :button, :form
+    # end
+
     
-      # Initialize the rails application
+    it "should extend Action View" do      
+      extend Rails3::PluginExtender::Macro      
+
+      after_init :view do |view|
+        view.should be_extended_with Helper::View, :panel, :window, :button, :form
+        view.should_not be_extended_with Helper::View, :unknown
+        lambda { view.should be_extended_with Helper::View, :unknown }.should raise_error
+      end
+      
       Minimal::Application.initialize!    
-    
-      # :view.should be_extended_with Helper::View, :unknown
     end
   end
 end
