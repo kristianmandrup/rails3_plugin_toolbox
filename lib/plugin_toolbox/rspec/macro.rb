@@ -1,10 +1,14 @@
 module Rails3
   class PluginExtender
     module Macro
-      ACTIVE_MODULES = {:AR => :active_record, :view => :action_view, :controller => :action_controller, :mailer => :action_mailer}    
+      class << self
+        include Rails3::PluginExtender::Util
+      end
+
+      MACRO = Rails3::PluginExtender::Macro
             
       def after_init component, &block
-        type = get_load_type component
+        type = MACRO.get_load_type component
         Rails3::PluginExtender.new do
           extend_rails type do          
             after :initialize do
@@ -13,16 +17,15 @@ module Rails3
           end
         end        
       end # def
-         
-      protected
 
-      def get_load_type type
-         return ACTIVE_MODULES[type] if ACTIVE_MODULES[type]
-         return type if ACTIVE_MODULES.values.include? type                
-         return type if type == :i18n
-         logger.warn "WARNING: The Rails 3 load handler for the component #{type} is not part of the default load process."
+      def init_app_railties app_name, *railties
+        app = "#{app_name.to_s.camelize}::Application".constantize 
+        app.initialize!                        
+        railties.each do |railtie|
+          MACRO.get_base_class(railtie).constantize
+        end
       end
-      
+               
     end
   end
 end

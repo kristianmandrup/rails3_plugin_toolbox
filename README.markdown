@@ -110,9 +110,9 @@ describe "My Plugin rails extensions" do
     # pull in a macro that makes 'after_init' available!
     extend Rails3::PluginExtender::Macro      
 
-    after_init :view do |view|
-      view.should be_extended_with Helper::View, :panel, :window, :button, :form
-      view.should_not be_extended_with Helper::View, :unknown
+    after_init :view do
+      :view.should be_extended_with Helper::View, :panel, :window, :button, :form
+      :view.should_not be_extended_with Helper::View, :unknown
     end
     
     Minimal::Application.initialize!    
@@ -130,8 +130,8 @@ describe "My other Plugin rails extensions" do
     end
   end
 
-  after_init :view do |view|
-    view.should be_extended_with Helper::View, :panel, :window, :button, :form
+  after_init :view do
+    :view.should be_extended_with Helper::View, :panel, :window, :button, :form
   end
 
   it "should extend Action View" do      

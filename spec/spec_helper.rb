@@ -5,9 +5,9 @@ require 'rails3_plugin_toolbox'
 # See http://www.igvita.com/2010/08/04/rails-3-internals-railtie-creating-plugins/
 
 
-require 'active_record'
-require 'action_mailer'
-require 'active_support'
+# require 'active_record'
+# require 'action_mailer'
+# require 'active_support'
 require 'action_controller'
 require 'action_view'
 require 'active_support/railtie'
