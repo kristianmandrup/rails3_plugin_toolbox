@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rails3_plugin_toolbox}
-  s.version = "0.3.1"
+  s.version = "0.3.2"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-08-22}
+  s.date = %q{2010-08-23}
   s.description = %q{Provides a more intuitive DSL for Rails 3 plugin configuration and a specialized RSpec 2 matcher. Makes it much easier to develop Rails 3 plugins!}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
      "lib/plugin_toolbox/extender.rb",
      "lib/plugin_toolbox/loader.rb",
      "lib/plugin_toolbox/rspec/config.rb",
+     "lib/plugin_toolbox/rspec/macro.rb",
      "lib/plugin_toolbox/rspec/matchers/be_extended_with.rb",
      "lib/plugin_toolbox/util.rb",
      "lib/rails3_plugin_toolbox.rb",
