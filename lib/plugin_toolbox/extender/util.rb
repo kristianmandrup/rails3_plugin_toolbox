@@ -34,7 +34,7 @@ module Rails3
 
       def get_module module_name
         case module_name
-        when Constant        
+        when Module        
           module_name
         when String
           module_name.to_s.constantize

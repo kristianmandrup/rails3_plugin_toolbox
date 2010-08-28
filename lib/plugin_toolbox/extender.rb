@@ -1,4 +1,4 @@
-require 'plugin_toolbox/util'
+require 'plugin_toolbox/extender/util'
 
 module Rails3
   class PluginExtender
@@ -43,8 +43,12 @@ module Rails3
       end
 
       def extend_with *module_names
-        module_names.each do |name|         
-          include name
+        module_names.each do |module_name|
+          begin
+            include get_module(module_name)
+          rescue
+            raise ArgumentError, "Unable to extend with #{module_name}"
+          end
         end
       end
       alias_method :with, :extend_with

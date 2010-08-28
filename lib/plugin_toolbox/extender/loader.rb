@@ -24,7 +24,10 @@ module Rails3
       def load_handling type, &block
         ActiveSupport.on_load type do
           extend Rails3::PluginExtender::DSL
-          instance_eval(&block)        
+
+          if block
+            block.arity < 1 ? self.instance_eval(&block) : block.call(self)  
+          end      
         end
       end
     end
