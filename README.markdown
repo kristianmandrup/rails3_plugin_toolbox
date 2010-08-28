@@ -4,7 +4,11 @@ This is a small toolbox that greatly facilitates creating Plugins for Rails 3 wi
 The toolbox provides a convenient DSL that abstracts away the internal Rails 3 plugin wiring to an even greater extent, making the DSL dead simple to use!
 
 I also provide a specialized RSpec 2 matcher *be_extended_with* which makes it easy to spec your plugin extension functionality, to make sure Rails is extended with
-the functionality (modules) that you expect and desire ;)
+the functionality (modules) that you expect and desire ;) 
+
+Good description of the Rails 3 plugin structure on this gist by Jose Valim:
+
+_INFO_: [Rails 3 plugin architecture](https://gist.github.com/af7e572c2dc973add221)
 
 ## Install
 
