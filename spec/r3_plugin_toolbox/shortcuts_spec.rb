@@ -1,5 +1,6 @@
 require 'spec_helper'
 require 'r3_plugin_toolbox/shortcuts'
+require 'active_record'
 
 describe 'Plugin shortcuts' do
   describe '#rails3_extensions' do    
@@ -25,14 +26,15 @@ describe 'Plugin shortcuts' do
 
   describe '#rails3_plugin' do    
     it "should create a plugin" do
-      rails3_plugin do
+      rails3_plugin :my_plug do
         set_orm :active_record
       end
     
       # Initialize the rails application
       init_app_railties :minimal
     
-      Minimal::Application.config.generators.orm.should == :active_record
+      Rails.configuration.generators.options[:rails][:orm].should == :active_record    
+      Minimal::Application.config.generators.options[:rails][:orm].should == :active_record
     end     
   end
 
@@ -45,7 +47,8 @@ describe 'Plugin shortcuts' do
       # Initialize the rails application
       init_app_railties :minimal
     
-      Minimal::Application.config.generators.orm.should == :active_record
+      Rails.configuration.generators.options[:rails][:orm].should == :active_record    
+      Minimal::Application.config.generators.options[:rails][:orm].should == :active_record
     end     
   end
 end

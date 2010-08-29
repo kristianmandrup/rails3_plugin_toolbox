@@ -4,26 +4,36 @@
 
 require 'r3_plugin_toolbox/railtie'
 
+puts "outside: #{self}"
+
+def make_engine module_name
+  eval %{
+    module #{module_name}
+      class Engine < ::Rails::Engine            
+        extend ::Rails3::Engine::Assist
+      end
+    end        
+  }
+end  
+
 module Rails3
   class Engine < ::Rails3::Plugin   
     attr_reader :name    
     
     def initialize name, &block
       @name = name
+      module_name = name.to_s.camelize
+      make_engine module_name
       
-      class_eval %{
-        module #{name.to_s.camelize}
-          class Engine < ::Rails::Engine
-            engine_name :#{name.to_s.underscore}
-            
-            include ::Rails3::Engine::Assist
-          end
-        end        
-      }
+      engine = "#{module_name}::Engine".constantize
+      
+      if block
+        block.arity < 1 ? engine.instance_eval(&block) : block.call(engine)  
+      end
     end  
 
     module Assist   
-      include ::Rails3::Plugin::Assist            
+      include ::Rails3::Plugin::Assist
       
       [:autoload, :eagerload].each do |name|
         class_eval %{

@@ -15,6 +15,16 @@
 # end
 
 
+def make_railtie name
+  eval %{
+    module #{name.to_s.camelize}
+      class Railtie < Rails::Railtie
+        extend ::Rails3::Plugin::Assist
+      end
+    end
+  }
+end  
+
 module Rails3
   class Plugin    
     attr_reader :name 
@@ -22,17 +32,14 @@ module Rails3
     def initialize name, &block
       @name = name
 
-      class_eval %{
-        module #{name.to_s.camelize}
-          class Railtie < Rails::Railtie
-              include ::Rails3::Plugin::Assist
-              
-              railtie_name :#{name.to_s.underscore}
-                            
-              #{yield}
-          end
-        end
-      }
+      module_name = name.to_s.camelize
+      make_railtie module_name
+      
+      railtie = "#{module_name}::Railtie".constantize
+
+      if block
+        block.arity < 1 ? railtie.instance_eval(&block) : block.call(railtie)  
+      end      
     end    
 
     module Assist
