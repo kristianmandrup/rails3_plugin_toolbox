@@ -19,7 +19,7 @@ module Rails3
   class Plugin    
     attr_reader :name 
     
-    def initialize name, init_name = 'initialize' &block
+    def initialize name, &block
       @name = name
 
       class_eval %{
@@ -37,7 +37,7 @@ module Rails3
 
     module Assist
       def set_test_framework name
-        config.generators.test_framework :testing_fu
+        config.generators.test_framework name
       end
 
       def use_middleware middleware

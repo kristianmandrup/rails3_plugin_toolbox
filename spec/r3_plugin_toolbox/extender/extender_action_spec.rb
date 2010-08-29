@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Rails3::PluginExtender do
+describe Rails3::Plugin::Extender do
   describe '#extend_rails' do
     it "should extend Action View" do
-      extender = Rails3::PluginExtender.new
+      extender = Rails3::Plugin::Extender.new
       
       extender.extend_rails :view do
         with MyAddition
@@ -22,7 +22,7 @@ describe Rails3::PluginExtender do
     end    
     
     it "should extend Action Controller" do
-      Rails3::PluginExtender.new do
+      Rails3::Plugin::Extender.new do
         extend_rails :controller do
           with MyAddition
       
@@ -41,7 +41,7 @@ describe Rails3::PluginExtender do
     end    
     
     it "should extend Action Mailer" do
-      Rails3::PluginExtender.new do
+      Rails3::Plugin::Extender.new do
         extend_rails :mailer do
           with MyAddition
       

@@ -1,5 +1,8 @@
 require 'spec_helper'
 
+require 'active_record'
+require 'action_mailer'
+
 module Helper
   module View
     module Panel
@@ -28,11 +31,11 @@ module Helper
   end
 end
 
-describe Rails3::PluginExtender do
+describe Rails3::Plugin::Extender do
   describe '#extend_rails' do        
 
     before :each do 
-      Rails3::PluginExtender.new do
+      Rails3::Plugin::Extender.new do
         extend_rails :view do
           extend_from_module Helper::View, :panel, :window
           extend_with Helper::View::Button, Helper::View::Form          

@@ -2,10 +2,10 @@
 
 # Any Rails::Engine is also a Rails::Railtie, so the same methods (like rake_tasks and generators) and configuration available in the latter can also be used in the former. 
 
-require 'plugin_toolbox/railtie'
+require 'r3_plugin_toolbox/railtie'
 
 module Rails3
-  class Engine < ::Rails3::Railtie   
+  class Engine < ::Rails3::Plugin   
     attr_reader :name    
     
     def initialize name, &block
@@ -23,7 +23,7 @@ module Rails3
     end  
 
     module Assist   
-      include ::Rails3::Railtie::Assist            
+      include ::Rails3::Plugin::Assist            
       
       [:autoload, :eagerload].each do |name|
         class_eval %{
