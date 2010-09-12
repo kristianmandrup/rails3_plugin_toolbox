@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{r3_plugin_toolbox}
-  s.version = "0.3.4"
+  s.version = "0.3.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/r3_plugin_toolbox/rspec/matchers/be_extended_with.rb",
      "lib/r3_plugin_toolbox/shortcuts.rb",
      "log/development.log",
+     "r3_plugin_toolbox.gemspec",
      "spec/fixtures/extension_modules.rb",
      "spec/r3_plugin_toolbox/engine_spec.rb",
      "spec/r3_plugin_toolbox/extender/extend_view_content_spec.rb",
