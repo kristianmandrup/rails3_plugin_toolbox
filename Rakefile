@@ -10,8 +10,8 @@ begin
     gem.add_development_dependency "rspec", ">= 2.0.0.beta.19"
 
     # gem.add_dependency 'active_support', ">= 3.0.0.rc"
-    gem.add_dependency "rails", ">= 3.0.0.rc"
-    gem.add_dependency "require_all", ">= 1.1.0"  
+    gem.add_dependency "rails", "~> 3.0"
+    gem.add_dependency "require_all", ">= 1.1.0"
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end
@@ -19,3 +19,4 @@ begin
 rescue LoadError
   puts "Jeweler (or a dependency) not available. Install it with: gem install jeweler"
 end
+
