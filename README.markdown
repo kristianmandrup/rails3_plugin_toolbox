@@ -1,4 +1,4 @@
-# Rails3 plugin toolbox
+# Rails 3 Plugin Toolbox
 
 This is a small toolbox that greatly facilitates creating Plugins for Rails 3 without having to know a lot about the Rails 3 internals and Plugin architecture.
 The toolbox provides a convenient DSL that abstracts away the internal Rails 3 plugin wiring to an even greater extent, making the DSL dead simple to use!
@@ -8,7 +8,7 @@ the functionality (modules) that you expect and desire ;)
 
 ## Install
 
-<code>gem install rails3_plugin_toolbox</code>
+<code>gem install r3_plugin_toolbox</code>
 
 ## Usage
 
@@ -16,7 +16,7 @@ the functionality (modules) that you expect and desire ;)
 # my_plugin/lib/my_plugin/rails/extensions.rb      
 
 require 'rails/all'
-require 'rails3_plugin_toolbox'
+require 'r3_plugin_toolbox'
 
 Rails3::PluginExtender.new do
   extend_from_module Ultra::View, :stuff, :in => :view 
@@ -95,7 +95,7 @@ _Usage example:_
 <pre>   
                    
 require 'rspec'
-require 'rails3_plugin_toolbox'
+require 'r3_plugin_toolbox'
 require 'rails/all'  
 
 describe "My Plugin rails extensions" do
