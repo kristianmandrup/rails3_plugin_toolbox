@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Rails3::PluginExtender do
+describe Rails3::Plugin::Extender do
   describe '#extend_rails' do
     it "should extend i18n" do
-      Rails3::PluginExtender.new do
+      Rails3::Plugin::Extender.new do
         extend_rails :i18n do
           with MyAddition
 

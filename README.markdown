@@ -1,10 +1,15 @@
-# Rails 3 Plugin Toolbox
+
+# Rails3 Plugin Toolbox
 
 This is a small toolbox that greatly facilitates creating Plugins for Rails 3 without having to know a lot about the Rails 3 internals and Plugin architecture.
 The toolbox provides a convenient DSL that abstracts away the internal Rails 3 plugin wiring to an even greater extent, making the DSL dead simple to use!
 
 I also provide a specialized RSpec 2 matcher *be_extended_with* which makes it easy to spec your plugin extension functionality, to make sure Rails is extended with
-the functionality (modules) that you expect and desire ;)
+the functionality (modules) that you expect and desire ;) 
+
+Good description of the Rails 3 plugin structure on this gist by Jose Valim:
+
+_INFO_: [Rails 3 plugin architecture](https://gist.github.com/af7e572c2dc973add221)
 
 ## Install
 
@@ -18,7 +23,7 @@ the functionality (modules) that you expect and desire ;)
 require 'rails/all'
 require 'r3_plugin_toolbox'
 
-Rails3::PluginExtender.new do
+Rails3::Plugin::Extender.new do
   extend_from_module Ultra::View, :stuff, :in => :view 
   extend_with Ultra::Controller, :in => :controller
 
@@ -52,7 +57,7 @@ end
 More API examples
 
 <pre>                        
-Rails3::PluginExtender.new do  
+Rails3::Plugin::Extender.new do  
   extend_rails :view do # or use :action_view
     with MyViewAddition
   end
@@ -100,7 +105,7 @@ require 'rails/all'
 
 describe "My Plugin rails extensions" do
   it "should extend Action View with View Helpers" do
-    Rails3::PluginExtender.new do
+    Rails3::Plugin::Extender.new do
       extend_rails :view do          
         extend_from_module Helper::View, :panel, :window
         extend_with Helper::View::Button, Helper::View::Form
@@ -127,7 +132,7 @@ end
 
 describe "My other Plugin rails extensions" do
   before :each do
-    Rails3::PluginExtender.new do
+    Rails3::Plugin::Extender.new do
       extend_rails :view do          
         extend_from_module Helper::View, :grid, :tree      
       end        
