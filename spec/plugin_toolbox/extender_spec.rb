@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'active_record'
 
 def extend_unknown
   Rails3::PluginExtender.new do

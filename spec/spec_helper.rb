@@ -1,6 +1,6 @@
 require 'rspec'
 require 'rspec/autorun'
-require 'rails3_plugin_toolbox'
+require 'r3_plugin_toolbox'
 
 # See http://www.igvita.com/2010/08/04/rails-3-internals-railtie-creating-plugins/
 
