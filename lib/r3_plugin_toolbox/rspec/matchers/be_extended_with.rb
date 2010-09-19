@@ -35,12 +35,15 @@ module Rails3
           def match_submodules? 
             submodules.each do |name|
               @bad_const = make_constant(module_const, name)
-              return false if !methods_included? get_methods(name)                          
+              if !methods_included? get_methods(name)
+                return false 
+              end
             end
             true
           end
 
           def methods_included? methods
+            @diff_methods = base_class_methods - methods
             (base_class_methods & methods) == methods
           end
 
@@ -49,7 +52,7 @@ module Rails3
           end
   
           def failure_message   
-            "Expected the rails class #{rails_const_name} to be extended with the methods in #{bad_const}#{cause}"
+            "Expected the rails class #{rails_const_name} to be extended with the methods in #{bad_const}#{cause}\n#{@diff_methods}"
           end 
   
           def negative_failure_message  
