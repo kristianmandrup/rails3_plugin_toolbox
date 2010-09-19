@@ -5,19 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{r3_plugin_toolbox}
-<<<<<<< HEAD
-  s.version = "0.3.5"
-
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-09-19}
-=======
   s.version = "0.3.6"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-09-13}
->>>>>>> 29f363bcb4775d99d3e28a9d85297f5d9a5dc2fd
+  s.date = %q{2010-09-19}
   s.description = %q{Provides a more intuitive DSL for Rails 3 plugin configuration and a specialized RSpec 2 matcher. Makes it much easier to develop Rails 3 plugins!}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -45,7 +37,6 @@ Gem::Specification.new do |s|
      "lib/r3_plugin_toolbox/rspec/matchers/be_extended_with.rb",
      "lib/r3_plugin_toolbox/shortcuts.rb",
      "log/development.log",
-     "r3_plugin_toolbox.gemspec",
      "spec/fixtures/extension_modules.rb",
      "spec/r3_plugin_toolbox/engine_spec.rb",
      "spec/r3_plugin_toolbox/extender/extend_view_content_spec.rb",
@@ -81,31 +72,16 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-<<<<<<< HEAD
       s.add_development_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
       s.add_runtime_dependency(%q<rails>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.1.0"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
-=======
-      s.add_development_dependency(%q<rspec>, ["~> 2.0.0"])
-      s.add_development_dependency(%q<rspec>, [">= 2.0.0.beta.19"])
-      s.add_runtime_dependency(%q<rails>, ["~> 3.0.0"])
-      s.add_runtime_dependency(%q<require_all>, ["~> 1.1.0"])
-    else
-      s.add_dependency(%q<rspec>, ["~> 2.0.0"])
-      s.add_dependency(%q<rspec>, [">= 2.0.0.beta.19"])
->>>>>>> 29f363bcb4775d99d3e28a9d85297f5d9a5dc2fd
       s.add_dependency(%q<rails>, ["~> 3.0.0"])
       s.add_dependency(%q<require_all>, ["~> 1.1.0"])
     end
   else
-<<<<<<< HEAD
     s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
-=======
-    s.add_dependency(%q<rspec>, ["~> 2.0.0"])
-    s.add_dependency(%q<rspec>, [">= 2.0.0.beta.19"])
->>>>>>> 29f363bcb4775d99d3e28a9d85297f5d9a5dc2fd
     s.add_dependency(%q<rails>, ["~> 3.0.0"])
     s.add_dependency(%q<require_all>, ["~> 1.1.0"])
   end
