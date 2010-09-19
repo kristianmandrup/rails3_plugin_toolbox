@@ -4,8 +4,6 @@
 
 require 'r3_plugin_toolbox/railtie'
 
-puts "outside: #{self}"
-
 def make_engine module_name
   eval %{
     module #{module_name}

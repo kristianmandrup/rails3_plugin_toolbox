@@ -1,3 +1,4 @@
+
 # Rails3 Plugin Toolbox
 
 This is a small toolbox that greatly facilitates creating Plugins for Rails 3 without having to know a lot about the Rails 3 internals and Plugin architecture.
@@ -20,7 +21,7 @@ _INFO_: [Rails 3 plugin architecture](https://gist.github.com/af7e572c2dc973add2
 # my_plugin/lib/my_plugin/rails/extensions.rb      
 
 require 'rails/all'
-require '3_plugin_toolbox'
+require 'r3_plugin_toolbox'
 
 Rails3::Plugin::Extender.new do
   extend_from_module Ultra::View, :stuff, :in => :view 
