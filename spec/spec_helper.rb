@@ -1,9 +1,7 @@
-require 'rspec'
-require 'rspec/autorun'
+require 'rspec/core'
 require 'r3_plugin_toolbox'
 
 # See http://www.igvita.com/2010/08/04/rails-3-internals-railtie-creating-plugins/
-
 
 # require 'active_support'
 require 'action_controller'
