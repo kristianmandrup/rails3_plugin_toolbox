@@ -7,12 +7,8 @@ begin
     gem.email = "kmandrup@gmail.com"
     gem.homepage = "http://github.com/kristianmandrup/rails3_plugin_toolbox"
     gem.authors = ["Kristian Mandrup"]
-<<<<<<< HEAD
     gem.add_development_dependency "rspec", "~> 2.0.0.beta.22"
 
-=======
-    gem.add_development_dependency "rspec", ">= 2.0.0.beta.19"
->>>>>>> 9c0a16306381169e0d767cb601cc62556e685240
     gem.add_dependency "rails",       "~> 3.0.0"
     gem.add_dependency "require_all", "~> 1.1.0"  
 
