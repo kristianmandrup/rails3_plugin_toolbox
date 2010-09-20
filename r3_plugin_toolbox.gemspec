@@ -37,6 +37,7 @@ Gem::Specification.new do |s|
      "lib/r3_plugin_toolbox/rspec/matchers/be_extended_with.rb",
      "lib/r3_plugin_toolbox/shortcuts.rb",
      "log/development.log",
+     "r3_plugin_toolbox.gemspec",
      "spec/fixtures/extension_modules.rb",
      "spec/r3_plugin_toolbox/engine_spec.rb",
      "spec/r3_plugin_toolbox/extender/extend_view_content_spec.rb",
