@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-09-19}
+  s.date = %q{2010-09-20}
   s.description = %q{Provides a more intuitive DSL for Rails 3 plugin configuration and a specialized RSpec 2 matcher. Makes it much easier to develop Rails 3 plugins!}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -75,16 +75,16 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_development_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
       s.add_runtime_dependency(%q<rails>, ["~> 3.0.0"])
-      s.add_runtime_dependency(%q<require_all>, ["~> 1.1.0"])
+      s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
       s.add_dependency(%q<rails>, ["~> 3.0.0"])
-      s.add_dependency(%q<require_all>, ["~> 1.1.0"])
+      s.add_dependency(%q<require_all>, ["~> 1.2.0"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
     s.add_dependency(%q<rails>, ["~> 3.0.0"])
-    s.add_dependency(%q<require_all>, ["~> 1.1.0"])
+    s.add_dependency(%q<require_all>, ["~> 1.2.0"])
   end
 end
 
