@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{r3_plugin_toolbox}
-  s.version = "0.3.12"
+  s.version = "0.3.13"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -30,10 +30,10 @@ Gem::Specification.new do |s|
      "lib/r3_plugin_toolbox/extender.rb",
      "lib/r3_plugin_toolbox/extender/load_handler.rb",
      "lib/r3_plugin_toolbox/extender/util.rb",
+     "lib/r3_plugin_toolbox/macro.rb",
      "lib/r3_plugin_toolbox/main.rb",
      "lib/r3_plugin_toolbox/railtie.rb",
      "lib/r3_plugin_toolbox/rspec/config.rb",
-     "lib/r3_plugin_toolbox/rspec/macro.rb",
      "lib/r3_plugin_toolbox/rspec/matchers/be_extended_with.rb",
      "lib/r3_plugin_toolbox/shortcuts.rb",
      "log/development.log",
