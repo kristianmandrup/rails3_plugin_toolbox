@@ -35,7 +35,7 @@ describe Rails3::Plugin::Extender do
   describe '#extend_rails' do        
 
     before :each do 
-      with_extension do
+      with_extension do        
         extend_rails :view do
           extend_from_module Helper::View, :panel, :window
           extend_with Helper::View::Button, Helper::View::Form          
@@ -44,6 +44,15 @@ describe Rails3::Plugin::Extender do
         extend_rails :controller do
           extend_from_module Helper::View, :panel
         end        
+      end
+
+      with_configuration do |c|
+        c.greeting = 'hello'
+      end
+
+      with_configuration do
+        greeting = 'hello'
+        say = 'max'
       end
     end
 

@@ -14,10 +14,10 @@ module Rails3
           end
         end
 
-        def with_engine name, &block
-          Rails3::Engine.new name do |e|
-            yield e
-          end
+        def with_configuration &block
+          if block
+            block.arity < 1 ? Rails.configuration.instance_eval(&block) : block.call(Rails.configuration)  
+          end      
         end
 
         def with_extension &block
