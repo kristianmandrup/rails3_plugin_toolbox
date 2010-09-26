@@ -7,6 +7,24 @@ module Rails3
         end
 
         MACRO = Rails3::Plugin::Extender::Macro
+
+        def with_engine name, &block
+          Rails3::Engine.new name do |e|
+            yield e
+          end
+        end
+
+        def with_engine name, &block
+          Rails3::Engine.new name do |e|
+            yield e
+          end
+        end
+
+        def with_extension &block
+          Rails3::Plugin::Extender.new do |e|
+            e.instance_eval(&block)
+          end
+        end
             
         def after_init component, &block
           type = MACRO.get_load_type component
