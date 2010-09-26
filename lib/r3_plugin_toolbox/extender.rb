@@ -1,5 +1,6 @@
 require 'r3_plugin_toolbox/extender/util'
 require 'r3_plugin_toolbox/extender/load_handler'
+require 'r3_plugin_toolbox/macro'
 
 module Rails3
   class Plugin
@@ -12,11 +13,16 @@ module Rails3
         end      
       end
 
+      def with_configuration &block
+        if block
+          block.arity < 1 ? Rails.configuration.instance_eval(&block) : block.call(Rails.configuration)  
+        end      
+      end
+
       # load after: [:initialize, :configuration, :eager_load]
       def extend_rails(type, &block)
         on_load(type, &block)
       end
-
   
       # convenience method to extend with multiple modules all within the same base module
       def extend_from_module base_name, *module_names, options

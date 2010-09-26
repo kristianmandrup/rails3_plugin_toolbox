@@ -1,5 +1,5 @@
 require 'rspec/core'
-require 'r3_plugin_toolbox/rspec/macro'
+require 'r3_plugin_toolbox/macro'
 require_all File.dirname(__FILE__) + '/matchers'
 
 RSpec.configure do |config|

@@ -54,6 +54,13 @@ describe Rails3::Plugin::Extender do
         greeting = 'hello'
         say = 'max'
       end
+      
+      Rails3::Plugin::Extender.new do
+        with_configuration do
+          greeting = 'hello'
+          say = 'max'
+        end
+      end
     end
 
     it "should extend Action View" do
