@@ -42,7 +42,13 @@ module Rails3
       end      
     end    
 
-    module Assist
+    module Assist 
+      def configs &block
+        if block
+          config.instance_eval(&block)
+        end      
+      end
+      
       def set_test_framework name
         config.generators.test_framework name
       end

@@ -6,6 +6,13 @@ describe Rails3::Engine do
     with_engine :my_engine do |e|
       e.add_locales_dir 'my_locales'
       e.set_orm :active_record
+
+      e.config.wow = 'super'      
+      # set custom config object
+      e.configs do
+        greeting = 'hello'
+        saying = 'hi'
+      end
     end
   
     # Initialize the rails application
