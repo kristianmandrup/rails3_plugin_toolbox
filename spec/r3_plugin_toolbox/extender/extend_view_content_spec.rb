@@ -47,11 +47,6 @@ describe Rails3::Plugin::Extender do
       end
     end
 
-    # after_init :view do |view|
-    #   view.should be_extended_with Helper::View, :panel, :window, :button, :form
-    # end
-
-    
     it "should extend Action View" do
       after_init :view do
         puts "View initialized!"
@@ -59,11 +54,7 @@ describe Rails3::Plugin::Extender do
         :view.should be_extended_with Helper::View, :panel, :window, :button, :form
         :view.should_not be_extended_with Helper::View, :unknown
 
-        :controller.should be_extended_with Helper::View, :panel, :window
-
-        lambda { :view.should be_extended_with Helper::View, :unknown }.should raise_error
-        
-        # :view.should be_extended_with Helper::View, :unknown
+        lambda { :view.should be_extended_with Helper::View, :unknown }.should raise_error        
       end
 
       init_app_railties :minimal, :view
