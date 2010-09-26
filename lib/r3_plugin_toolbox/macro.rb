@@ -1,5 +1,11 @@
 module Rails3
-  class Plugin
+  def self.with_configuration &block
+    if block
+      block.arity < 1 ? Rails.configuration.instance_eval(&block) : block.call(Rails.configuration)  
+    end      
+  end    
+
+  class Plugin    
     class Extender
       module Macro
         class << self

@@ -64,7 +64,11 @@ describe Rails3::Plugin::Extender do
     end
 
     it "should extend Action View" do
-      after_init :view do
+      after_init :view do 
+        Rails3.with_configuration do
+          greeting = 'hello'
+        end
+        
         puts "View initialized!"
         
         :view.should be_extended_with Helper::View, :panel, :window, :button, :form
