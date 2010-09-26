@@ -23,7 +23,7 @@ module Rails3
 
               methods_included? module_const.instance_methods 
             rescue
-              @cause = ", but the extension module wasn't found"
+              @cause = ", but the extension module #{@rails_const} wasn't found"
               false
             end
           end
@@ -43,7 +43,6 @@ module Rails3
           end
 
           def methods_included? methods
-            @diff_methods = base_class_methods - methods
             (base_class_methods & methods) == methods
           end
 
@@ -52,7 +51,7 @@ module Rails3
           end
   
           def failure_message   
-            "Expected the rails class #{rails_const_name} to be extended with the methods in #{bad_const}#{cause}\n#{@diff_methods}"
+            "Expected the rails class #{rails_const_name} to be extended with the methods in #{bad_const}#{cause}"
           end 
   
           def negative_failure_message  
