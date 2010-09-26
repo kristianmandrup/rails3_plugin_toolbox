@@ -23,7 +23,7 @@ module Rails3
 
               methods_included? module_const.instance_methods 
             rescue
-              @cause = ", but the extension module #{@rails_const} wasn't found"
+              @cause = ", but the module #{rails_const_name} has not been registered"
               false
             end
           end
