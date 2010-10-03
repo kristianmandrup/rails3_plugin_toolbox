@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{r3_plugin_toolbox}
-  s.version = "0.3.13"
+  s.version = "0.3.14"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-09-26}
+  s.date = %q{2010-10-03}
   s.description = %q{Provides a more intuitive DSL for Rails 3 plugin configuration and a specialized RSpec 2 matcher. Makes it much easier to develop Rails 3 plugins!}
   s.email = %q{kmandrup@gmail.com}
   s.extra_rdoc_files = [
@@ -80,15 +80,18 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
       s.add_runtime_dependency(%q<rails>, ["~> 3.0.0"])
       s.add_runtime_dependency(%q<require_all>, ["~> 1.2.0"])
+      s.add_runtime_dependency(%q<sugar-high>, ["~> 0.2.11"])
     else
       s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
       s.add_dependency(%q<rails>, ["~> 3.0.0"])
       s.add_dependency(%q<require_all>, ["~> 1.2.0"])
+      s.add_dependency(%q<sugar-high>, ["~> 0.2.11"])
     end
   else
     s.add_dependency(%q<rspec>, ["~> 2.0.0.beta.22"])
     s.add_dependency(%q<rails>, ["~> 3.0.0"])
     s.add_dependency(%q<require_all>, ["~> 1.2.0"])
+    s.add_dependency(%q<sugar-high>, ["~> 0.2.11"])
   end
 end
 
