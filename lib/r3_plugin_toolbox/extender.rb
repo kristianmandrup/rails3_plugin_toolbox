@@ -25,15 +25,17 @@ module Rails3
       end
   
       # convenience method to extend with multiple modules all within the same base module
-      def extend_from_module base_name, *module_names, options
-        raise ArgumentError, "You must specify an options Hash as the last argument for #extend_from_module" if !options.kind_of? Hash      
+      def extend_from_module base_name, *module_names
+        options = last_option(module_names)
+        raise ArgumentError, "You must specify an options Hash as the last argument for #extend_from_module" if !options || !options.kind_of?(Hash)
         module_names.each do |name|
           extend_with get_constant(base_name, name), options
         end
       end
 
-      def extend_with *module_names, options
-        raise ArgumentError, "You must specify an options Hash as the last argument for #extend_with" if !options.kind_of? Hash      
+      def extend_with *module_names
+        options = last_option(module_names)
+        raise ArgumentError, "You must specify an options Hash as the last argument for #extend_with" if !options || !options.kind_of?(Hash)
         type = options[:in]
         raise ArgumentError, "You must specify an :in option to indicate which Rails 3 component base class to extend with #{module_names}" if !type
         module_names.each do |name|      

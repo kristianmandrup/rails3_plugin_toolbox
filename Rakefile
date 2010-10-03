@@ -10,7 +10,8 @@ begin
 
     gem.add_development_dependency "rspec", "~> 2.0.0.beta.22"
     gem.add_dependency "rails",       "~> 3.0.0"
-    gem.add_dependency "require_all", "~> 1.2.0"  
+    gem.add_dependency "require_all", "~> 1.2.0"
+    gem.add_dependency "sugar-high",  "~> 0.2.11"
 
     # gem is a Gem::Specification... see http://www.rubygems.org/read/chapter/20 for additional settings
   end

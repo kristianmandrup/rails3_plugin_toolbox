@@ -15,6 +15,10 @@ _INFO_: [Rails 3 plugin architecture](https://gist.github.com/af7e572c2dc973add2
 
 <code>gem install r3_plugin_toolbox</code>
 
+## Compatibility
+
+This gem has only been tested with Rails 3 and Ruby 1.9. 
+
 ## Usage
 
 <pre>
