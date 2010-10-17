@@ -8,7 +8,7 @@ begin
     gem.homepage = "http://github.com/kristianmandrup/rails3_plugin_toolbox"
     gem.authors = ["Kristian Mandrup"]
 
-    gem.add_development_dependency "rspec", ">= 2.0.0.rc"
+    gem.add_development_dependency "rspec", ">= 2.0.0"
     gem.add_dependency "rails",       "~> 3.0.0"
     gem.add_dependency "require_all", "~> 1.2.0"
     gem.add_dependency "sugar-high",  "~> 0.2.11"
