@@ -12,8 +12,6 @@ module Rails3
           include Rails3::Plugin::Extender::Util
         end
 
-        MACRO = Rails3::Plugin::Extender::Macro
-
         def with_engine name, &block
           Rails3::Engine.new name do |e|
             yield e
@@ -33,7 +31,7 @@ module Rails3
         end
             
         def after_init component, &block
-          type = MACRO.get_load_type component
+          type = macro.get_load_type component
           Rails3::Plugin::Extender.new do
             extend_rails type do          
               after :initialize do
@@ -47,10 +45,15 @@ module Rails3
           app = "#{app_name.to_s.camelize}::Application".constantize 
           app.initialize!                        
           railties.each do |railtie|
-            MACRO.get_base_class(railtie).constantize
+            macro.get_base_class(railtie).constantize
           end
         end
-               
+        
+        protected
+        
+        def macro
+          Rails3::Plugin::Extender::Macro
+        end      
       end
     end
   end

@@ -2,9 +2,6 @@ module Rails3
   class Plugin
     class Extender
       module Util    
-        INIT = :initialize    
-        ACTIVE_MODULES = {:AR => :active_record, :view => :action_view, :controller => :action_controller, :mailer => :action_mailer}    
-
         def get_base_class type
           type = get_load_type(type).to_s
           const = act_type?(type) ? rails_const_base(type) : "#{type.to_s.camelize}"                            
@@ -27,8 +24,8 @@ module Rails3
         end
 
         def get_load_type type
-           return ACTIVE_MODULES[type] if ACTIVE_MODULES[type]
-           return type if ACTIVE_MODULES.values.include? type                
+           return active_modules[type] if active_modules[type]
+           return type if active_modules.values.include? type                
            return type if type == :i18n
            logger.warn "WARNING: The Rails 3 load handler for the component #{type} is not part of the default load process."
         end
@@ -45,17 +42,21 @@ module Rails3
         end
 
         protected
+
+        def active_modules 
+          {:AR => :active_record, :view => :action_view, :controller => :action_controller, :mailer => :action_mailer}    
+        end
     
         def valid_before_hook? type
-          [INIT, :configuration, :eager_load].include?(type)          
+          [:initialize, :configuration, :eager_load].include?(type)          
         end
 
         def valid_after_hook? type
-          INIT == type
+          :initialize == type
         end
 
         def valid_load_hook? type
-          @valid_load_hooks ||= [ACTIVE_MODULES.keys, ACTIVE_MODULES.values, :i18n].flatten
+          @valid_load_hooks ||= [active_modules.keys, active_modules.values, :i18n].flatten
           @valid_load_hooks.include?(type)          
         end    
       end
